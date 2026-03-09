@@ -56,36 +56,36 @@ class Listing extends StatefulWidget {
 class ListingState extends State<Listing> {
   final searchController = TextEditingController();
 
-  final List<FleetCard> vehicles = [
-    FleetCard(
+  final List<Vehicle> vehicles = [
+    Vehicle(
       license: "UP14JT9486",
       voilation: "Permit Expired",
       voilationText: "Permit expired 10 days ago",
       vehicleModel: "BharatBenz - Diesel/BS6",
       alertType: AlertType.overDue,
     ),
-    FleetCard(
+    Vehicle(
       license: "UP14FL0581",
       voilation: "PUC Certificate",
       voilationText: "PUC Certificate expiring soon",
       vehicleModel: "Bajaj Pulsar - Petrol/BS6",
       alertType: AlertType.dueIn,
     ),
-    FleetCard(
+    Vehicle(
       license: "UP14FN0809",
       voilation: "All Okay",
       voilationText: "Nothings needs a view",
       vehicleModel: "Mahindra - Diesel/BS6",
       alertType: AlertType.okay,
     ),
-    FleetCard(
+    Vehicle(
       license: "UP14JT3320",
       voilation: "PUC Certificate",
       voilationText: "PUC Certificate expiring soon",
       vehicleModel: "ASHOK LEYLAND DOST - CNG/BS4",
       alertType: AlertType.dueIn,
     ),
-    FleetCard(
+    Vehicle(
       license: "UP14NT8943",
       voilation: "All Okay",
       voilationText: "Nothings needs a view",
@@ -116,7 +116,11 @@ class ListingState extends State<Listing> {
         Expanded(
           child: LayoutBuilder(
             builder: (context, constraints) {
-              int columns = 1;
+              int columns = (constraints.maxWidth > 960)
+                  ? 3
+                  : (constraints.maxWidth >= 599)
+                  ? 2
+                  : 1;
               double spacing = 8;
 
               double totalSpacing = (columns - 1) * spacing;
@@ -132,7 +136,13 @@ class ListingState extends State<Listing> {
                   childAspectRatio: aspectRation,
                   mainAxisSpacing: spacing,
                 ),
-                itemBuilder: (context, index) => vehicles[index],
+                itemBuilder: (context, index) => FleetCard(
+                  license: vehicles[index].license,
+                  vehicleModel: vehicles[index].vehicleModel,
+                  voilation: vehicles[index].voilation,
+                  voilationText: vehicles[index].voilationText,
+                  alertType: vehicles[index].alertType,
+                ),
                 itemCount: vehicles.length,
               );
             },
