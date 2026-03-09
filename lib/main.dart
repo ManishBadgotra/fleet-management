@@ -78,7 +78,7 @@ class ListingState extends State<Listing> {
           FleetCard(
             license: "UP14JT9486",
             voilation: "Permit Expired",
-            voilationText: "Permit expired",
+            voilationText: "Permit expired 10 days ago",
             vehicleModel: "BharatBenz - Diesel/BS6",
             alertType: AlertType.overDue,
           ),
