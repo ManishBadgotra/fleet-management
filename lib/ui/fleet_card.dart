@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'vehicle.dart';
+import '../models/vehicle.dart';
 
 class FleetCard extends StatefulWidget {
   const FleetCard({
@@ -16,7 +16,7 @@ class FleetCard extends StatefulWidget {
   final String voilationText;
   final String vehicleModel;
   // AlertType is needed to show alert according to type of Alert defined enum named AlertType.
-
+  // Alert system is dependent on alertType if incorret alert type will be given then no matter what data is coming card will display wrong alert
   // If not given then it has default value to AlertType.overDue. Which means Document is Long Expired.
   final AlertType alertType;
 
@@ -39,7 +39,7 @@ class _FleetCardState extends State<FleetCard> {
                 padding: const EdgeInsets.all(18.0),
                 child: Column(
                   crossAxisAlignment: .start,
-                  mainAxisSize: .min,
+                  mainAxisSize: .max,
                   children: [
                     Row(
                       mainAxisSize: .max,
@@ -133,8 +133,9 @@ class _FleetCardState extends State<FleetCard> {
                         const SizedBox(width: 8),
                         Text(
                           widget.voilationText,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
+                          // maxLines: 2,
+                          softWrap: true,
+                          // overflow: TextOverflow.clip,
                           style: TextStyle(
                             color: (widget.alertType == AlertType.okay)
                                 ? Colors.black

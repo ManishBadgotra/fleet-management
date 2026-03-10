@@ -1,4 +1,4 @@
-package com.example.flutter_learning
+package com.example.fleet_management
 
 import io.flutter.embedding.android.FlutterActivity
 

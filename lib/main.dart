@@ -1,8 +1,38 @@
 import 'package:flutter/material.dart';
-import './models/vehicle.dart';
-import 'models/fleet_card.dart';
+import 'package:window_manager/window_manager.dart';
+// import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
+import './models/vehicle.dart';
+import 'ui/fleet_card.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Must be called before any windowManager usage
+  await windowManager.ensureInitialized();
+
+  const Size minSize = Size(400, 600); // your minimum width x height
+  // const Size initSize = Size(1280, 720); // your initial window size
+
+  WindowOptions windowOptions = WindowOptions(
+    size: minSize,
+    minimumSize: minSize, // ✅ set via WindowOptions
+    center: true,
+    title: 'Fleet Management',
+  );
+
+  await windowManager.waitUntilReadyToShow(windowOptions, () async {
+    await windowManager.show();
+    await windowManager.focus();
+  });
+
+  // WidgetsFlutterBinding.ensureInitialized();
+
+  // ── Paid TIER: Implementation here ────────────────────────────
+  // await dotenv.load(fileName: '.env'); // uncomment this to load .env file
+
+  // ── FREE TIER: Pre-warm local SQLite ────────────────────────────
+  // await LocalDatabase.instance.database;
   runApp(MyApp());
 }
 
@@ -12,6 +42,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: "Fleet Management",
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
@@ -27,7 +58,6 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      title: "Fleet Management App",
       home: Scaffold(
         primary: true, // user can see status bar if false
         appBar: AppBar(
@@ -126,9 +156,8 @@ class ListingState extends State<Listing> {
               double totalSpacing = (columns - 1) * spacing;
               var itemWidth = (constraints.maxWidth - totalSpacing) / columns;
 
-              double itemHeight = 180;
+              double itemHeight = 200;
               double aspectRation = itemWidth / itemHeight;
-              print("----- ${constraints.maxWidth}-----");
               return GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisSpacing: spacing,
