@@ -104,6 +104,8 @@ Additionally, unlock **proactive mobile push notifications** that alert you abou
 
 > 💡 **Self-hosted users:** The RTO data API, cloud database sync, and push notification infrastructure powering the Paid tier all rely on our managed backend. None of these will function in self-hosted builds unless you supply and configure your own equivalent services.
 
+### To release an App for Android run `flutter clean && flutter pub get && flutter build apk --release --split-per-abi`
+
 ---
 
 ## 🛠 Tech Stack

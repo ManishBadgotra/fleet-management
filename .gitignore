@@ -11,6 +11,11 @@
 .svn/
 .swiftpm/
 migrate_working_dir/
+*.jks
+android/key.properties
+linux/
+macos/
+windows/
 
 # IntelliJ related
 *.iml
