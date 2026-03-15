@@ -209,8 +209,8 @@ class _FleetCardState extends State<FleetCard> {
                             color: (widget.alertType == AlertType.okay)
                                 ? Colors.black
                                 : (widget.alertType == AlertType.dueIn)
-                                ? Colors.amber
-                                : Colors.redAccent,
+                                ? Colors.black
+                                : Colors.black,
                           ),
                         ),
                       ],
@@ -231,7 +231,7 @@ class _FleetCardState extends State<FleetCard> {
                             style: TextStyle(
                               fontSize: 13,
                               fontWeight: FontWeight.w600,
-                              color: _alertColor(),
+                              color: Colors.black,
                             ),
                           ),
                           AnimatedRotation(
@@ -239,7 +239,7 @@ class _FleetCardState extends State<FleetCard> {
                             duration: const Duration(milliseconds: 250),
                             child: Icon(
                               Icons.keyboard_arrow_down,
-                              color: _alertColor(),
+                              color: Colors.black,
                             ),
                           ),
                         ],

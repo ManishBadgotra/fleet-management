@@ -13,7 +13,7 @@ Future<void> main() async {
   if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
     await windowManager.ensureInitialized();
 
-    const Size minSize = Size(400, 600);
+    const Size minSize = Size(800, 600);
     WindowOptions windowOptions = const WindowOptions(
       size: minSize,
       minimumSize: minSize,
